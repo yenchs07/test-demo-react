@@ -2,56 +2,25 @@
 //function components
 
 import React from "react";
+import UserInfor from "./UserInfor";
+import DisplayInfor from "./DisplayInfor";
 
 class MyComponent extends React.Component {
 
 
-    state = {
-        name: "Yen",
-        address: "Quang ngai ",
-        age: 25
-    };
-
-    handleClick(event) {
-        console.log(">>click me my button");
-        // console.log("My name is ", this.state.name);
-        ///merge stage=>react class
-
-        this.setState({
-            name: "em QUỳnh",
-            age: Math.floor((Math.random() * 100) + 1)
-        })
-
-
-        // this.setState({
-        //     age: Math.floor((Math.random() * 100) + 1)
-        // })
-    }
-    handleOnMoverOver(event) {
-        // console.log(event.pageX);
-    }
-    handleOnChangeInput = (event) => {
-        this.setState({
-            name: event.target.value
-        })
-
-    }
-    handleOnSubmit = (event) => {
-        event.preventDefault();
-
-        console.log(this.state);
-    }
 
     //JSX
     render() {
+        const myInfor = ["ab", "c", "c"];
         return (
             <div>
-                My name is {this.state.name} and i'm {this.state.age}
-                <form onSubmit={(event) => this.handleOnSubmit(event)}>
-                    <input type="text"
-                        onChange={(event) => this.handleOnChangeInput(event)} />
-                    <button> Submit</button>
-                </form>
+
+                <UserInfor />
+                <br></br>
+                <br></br>
+                <DisplayInfor name="Yen Trần" age="30" />
+                <hr />
+                <DisplayInfor name="Yen Trần" age={26} myInfor={myInfor} />
             </div>
 
         );
