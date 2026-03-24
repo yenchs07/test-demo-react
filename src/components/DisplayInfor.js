@@ -4,39 +4,53 @@ import { use } from "react";
 
 
 class DisplayInfor extends React.Component {
+    state = {
+        isShowListUser: true
+    }
+    handleShowHide = () => {
+        this.setState({
+            isShowListUser: !this.state.isShowListUser
+        })
+    }
     render() {
         const { listUsers } = this.props;//object
         // const listUsers = this.props.listUsers;
-        console.log(listUsers);
+        // console.log(listUsers);
+        // console.table(listUsers)
         // console.log(this.props);
         return (
-            //destructuring array/object
-
-            //props => viet tắt properties
             <div>
-                {listUsers.map((user, index) => {
+                <div>
+                    <span onClick={() => { this.handleShowHide() }}>
 
-                    return (
+                        {
+                            this.state.isShowListUser === true ? "Hide list user: " : "Show list user: "}
+                    </span>
+                </div>
+                {this.state.isShowListUser &&
 
-                        <div key={user.id}>
-                            <div>My name's {user.name}</div>
-                            <div>My age's {user.age}</div>
-                            <hr />
-                        </div>
-                    )
+                    <div>
+                        {listUsers.map((user, index) => {
 
-                })}
-                {/* <div>My name's {this.props.name}</div>
-                <div>sap chec toi noi{this.props.age}</div>
-                <hr />
-                <div>My name's {this.props.name}</div>
-                <div>sap chec toi noi{this.props.age}</div>
-                <hr />
-                <div>My name's {this.props.name}</div>
-                <div>sap chec toi noi{this.props.age}</div> */}
+                            return (
 
+                                <div key={user.id} className={+user.age > 18 ? "green" : "red"}>
+                                    <div>My name's {user.name}</div>
+                                    <div>My age's {user.age}</div>
+                                    <hr />
+                                </div>
+                            )
+
+                        })}
+
+
+
+
+                    </div>
+                }
             </div>
         )
     }
+
 }
 export default DisplayInfor;
