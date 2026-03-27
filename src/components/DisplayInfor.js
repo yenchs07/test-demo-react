@@ -1,7 +1,7 @@
 import React from "react";
-import UserInfor from "./UserInfor";
-import { use } from "react";
 
+import './DisplayInfor.scss';
+import logo from './../logo.svg';
 
 class DisplayInfor extends React.Component {
     state = {
@@ -18,8 +18,10 @@ class DisplayInfor extends React.Component {
         // console.log(listUsers);
         // console.table(listUsers)
         // console.log(this.props);
+        //template +logic js
         return (
-            <div>
+            <div className="display-Infor-Container"   >
+                {/* <img src={logo} /> */}
                 <div>
                     <span onClick={() => { this.handleShowHide() }}>
 
@@ -27,16 +29,22 @@ class DisplayInfor extends React.Component {
                             this.state.isShowListUser === true ? "Hide list user: " : "Show list user: "}
                     </span>
                 </div>
-                {this.state.isShowListUser &&
+                {
+                    this.state.isShowListUser &&
 
-                    <div>
+                    <>
                         {listUsers.map((user, index) => {
 
                             return (
 
                                 <div key={user.id} className={+user.age > 18 ? "green" : "red"}>
-                                    <div>My name's {user.name}</div>
-                                    <div>My age's {user.age}</div>
+                                    <div>
+                                        <div>My name's {user.name}</div>
+                                        <div>My age's {user.age}</div>
+                                    </div>
+                                    <div>
+                                        <button on onClick={() => this.props.handleDeleteUser(user.id)}>Delete</button>
+                                    </div>
                                     <hr />
                                 </div>
                             )
@@ -46,9 +54,9 @@ class DisplayInfor extends React.Component {
 
 
 
-                    </div>
+                    </>
                 }
-            </div>
+            </div >
         )
     }
 

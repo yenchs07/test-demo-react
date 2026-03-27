@@ -2,7 +2,7 @@
 //function components
 
 import React from "react";
-import UserInfor from "./UserInfor";
+import AddUserInfor from "./AddUserInfor";
 import DisplayInfor from "./DisplayInfor";
 
 class MyComponent extends React.Component {
@@ -14,22 +14,48 @@ class MyComponent extends React.Component {
 
         ]
     }
-
+    handleAddNewUser = (userobj) => {
+        let listUserClone = [...this.state.listUsers];
+        // console.log(">>>check data", userobj);
+        this.setState({
+            listUsers: [userobj, ...this.state.listUsers]
+            // listUsers: [...this.state.listUsers, userobj]
+        })
+    }
+    handleDeleteUser = (userId) => {
+        let listUserClone = this.state.listUsers;
+        listUserClone = listUserClone.filter(item => item.id !== userId);
+        this.setState({
+            listUsers: listUserClone
+        })
+    }
 
 
     //JSX
     render() {
-        const myInfor = ["ab", "c", "c"];
+        // const myInfor = ["ab", "c", "c"];
         //dry: don't rep 
+        const test = true;
         return (
-            <div>
+            <>
+                {/* {console.log("chekkkk",test)} */}
+                {test}
+                <br />
+                <div className="a">
 
-                <UserInfor />
-                <br></br>
-                <DisplayInfor listUsers={this.state.listUsers}
-                />
+                    <AddUserInfor handleAddNewUser={this.handleAddNewUser}
+                    />
+                    <br></br>
+                    <DisplayInfor
+                        listUsers={this.state.listUsers}
+                        handleDeleteUser={this.handleDeleteUser}
+                    />
 
-            </div>
+                </div>
+                <div className="b">
+
+                </div>
+            </>
 
         );
 
